@@ -6,7 +6,6 @@ import Log from './components/Log';
 const App: React.FC = () => {
   return (
     <div className="App">
-      test
       <Log/>
       <ActionBar/>
     </div>
