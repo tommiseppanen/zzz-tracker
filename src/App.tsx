@@ -5,7 +5,7 @@ import Log from './components/Log';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="app">
       <Log/>
       <ActionBar/>
     </div>
