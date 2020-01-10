@@ -1,7 +1,7 @@
 import * as React from 'react';
+import SleepEvent from './../models/SleepEvent';
 
-const Log: React.FC = () => {
-  const [content, setContent] = React.useState("");
+const Log: React.FC<{sleepEvents: SleepEvent[]}> = (events) => {
   return (
     <div className="Log">
       <div>Saturday 12.12.2021</div>

@@ -3,7 +3,7 @@ enum SleepState {
     asleep,
 }
 
-class SleepEvent {
-    type: SleepState;
-    time: Date;
+export default class SleepEvent {
+    type: SleepState | undefined;
+    time: Date | undefined;
 } 
