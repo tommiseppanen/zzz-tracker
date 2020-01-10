@@ -5,7 +5,7 @@ import Log from './components/Log';
 import SleepEvent from './models/SleepEvent';
 
 const App: React.FC = () => {
-  const events: SleepEvent[] = [];
+  const events: SleepEvent[] = [new SleepEvent(), new SleepEvent()];
   return (
     <div className="app">
       <Log sleepEvents={events}/>
