@@ -1,9 +1,13 @@
-enum SleepState {
-    awake,
-    asleep,
+export enum SleepState {
+    Awake,
+    Asleep,
 }
 
 export default class SleepEvent {
-    type: SleepState | undefined;
-    time: Date | undefined;
+    state: SleepState;
+    time: Date;
+    constructor(time: Date, state: SleepState) {
+        this.time = time;
+        this.state = state;
+    }
 } 
