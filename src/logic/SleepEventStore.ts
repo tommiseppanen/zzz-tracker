@@ -1,17 +1,26 @@
 import SleepEvent, { SleepState } from './../models/SleepEvent';
 
 export default class SleepEventStore {
-    sleepEvents: SleepEvent[];
+    private _sleepEvents: SleepEvent[];
 
     constructor() {
-        this.sleepEvents = [];
+        this._sleepEvents = [];
     } 
 
     AddAwake() {
-        this.sleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
+        this._sleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
     }
 
     AddAsleep() {
-        this.sleepEvents.push(new SleepEvent(new Date(), SleepState.Asleep));
+        this._sleepEvents.push(new SleepEvent(new Date(), SleepState.Asleep));
+    }
+
+    AddAwakeAndAsleep(){
+        this._sleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
+        this._sleepEvents.push(new SleepEvent(new Date(), SleepState.Asleep));
+    }
+
+    private StoreEvents(){
+
     }
 } 
