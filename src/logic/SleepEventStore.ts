@@ -5,7 +5,11 @@ export default class SleepEventStore {
 
     constructor() {
         this._sleepEvents = [];
-    } 
+    }
+
+    GetEvents() : SleepEvent[] {
+        return this._sleepEvents;
+    }
 
     AddAwake() {
         this._sleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
@@ -13,6 +17,7 @@ export default class SleepEventStore {
 
     AddAsleep() {
         this._sleepEvents.push(new SleepEvent(new Date(), SleepState.Asleep));
+        console.log("Added asleep");
     }
 
     AddAwakeAndAsleep(){
