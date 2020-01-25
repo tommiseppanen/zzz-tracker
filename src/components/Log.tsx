@@ -34,7 +34,7 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
           i++;
         }
         else {
-          items.push(<div className="log__entry separator" key={i}>{symbol}{time}</div>);
+          items.push(<div className="log__entry--separator" key={i}>{symbol}{time}</div>);
         }
       }
       else {
