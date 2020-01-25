@@ -5,11 +5,11 @@ import Log from './components/Log';
 import sleepEventReducer from './logic/sleepEventReducer';
 
 const App: React.FC = () => {
-  const [state, dispatch] = React.useReducer(sleepEventReducer, { sleepEvents: [] });
+  const [sleepEvents, dispatchSleepEvents] = React.useReducer(sleepEventReducer, { sleepEvents: [] });
   return (
     <div className="app">
-      <Log sleepEventsState={state}/>
-      <ActionBar dispatch={dispatch}/>
+      <Log sleepEventsState={sleepEvents}/>
+      <ActionBar dispatch={dispatchSleepEvents}/>
     </div>
   );
 }
