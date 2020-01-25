@@ -1,28 +1,37 @@
 import SleepEvent, { SleepState } from './../models/SleepEvent';
+import React from 'react';
 
-export type StateType = {
-    sleepEvents: SleepEvent[];
-  }
+export type SleepEventsStateType = {
+  sleepEvents: SleepEvent[];
+}
 
-export type ActionType = {
-    type: 'init' | 'add-awake' | 'add-asleep' | 'add-awake-and-asleep'
-  }
+export type SleepActionType = {
+  type: 'init' | 'add-awake' | 'add-asleep' | 'add-awake-and-asleep'
+}
 
-export function sleepEventReducer(state: StateType, action: ActionType) {
-    switch (action.type) {
-      case 'init':
-        return { sleepEvents: []};
-      case 'add-awake':
-        return { sleepEvents: state.sleepEvents.push(new SleepEvent(new Date(), SleepState.Awake)) };
-      case 'add-asleep':
-        return { sleepEvents: state.sleepEvents.push(new SleepEvent(new Date(), SleepState.Asleep))};
-      case 'add-awake-and-asleep':
-        let newSleepEvents = state.sleepEvents;
-        newSleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
-        newSleepEvents.push(new SleepEvent(new Date(), SleepState.Asleep));
-        return { sleepEvents:  newSleepEvents};
-      default:
-        return state;
+//React.FC
+export default function sleepEventReducer(state: SleepEventsStateType, action: SleepActionType) : SleepEventsStateType {
+  switch (action.type) {
+    case 'init':
+      return { sleepEvents: []};
+    case 'add-awake': {
+      let newSleepEvents = state.sleepEvents;
+      newSleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
+      return { sleepEvents: newSleepEvents };
     }
+    case 'add-asleep': {
+      let newSleepEvents = state.sleepEvents;
+      newSleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
+      return { sleepEvents: newSleepEvents };
+    }
+    case 'add-awake-and-asleep': {
+      let newSleepEvents = state.sleepEvents;
+      newSleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
+      newSleepEvents.push(new SleepEvent(new Date(), SleepState.Asleep));
+      return { sleepEvents:  newSleepEvents};
+    }
+    default:
+      return state;
   }
+}
   

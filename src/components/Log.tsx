@@ -1,7 +1,7 @@
 import * as React from 'react';
-import SleepEventStore from '../logic/SleepEventStore';
+import * as SleepEventReducer from '../logic/sleepEventReducer';
 
-const Log: React.FC<{sleepEventStore: SleepEventStore}> = ({sleepEventStore}) => {
+const Log: React.FC<{sleepEventsState: SleepEventReducer.SleepEventsStateType}> = ({sleepEventsState}) => {
   const options = {
     timeZone:"Europe/Helsinki",
     hour12 : false,
@@ -16,9 +16,9 @@ const Log: React.FC<{sleepEventStore: SleepEventStore}> = ({sleepEventStore}) =>
       <div>👀02:00 😴03:00</div>
       <div>👀😴05:00</div>
       <div>👀06:00</div>
-      <div>{sleepEventStore.GetEvents().length}</div>
+      <div>{sleepEventsState.sleepEvents.length}</div>
       {
-        sleepEventStore.GetEvents().map((value, index) => 
+        sleepEventsState.sleepEvents.map((value, index) => 
           <div key={index}>{value.time.toLocaleTimeString("en-US", options)}</div>)
       }
     </div>
