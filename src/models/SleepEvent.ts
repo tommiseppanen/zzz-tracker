@@ -3,6 +3,17 @@ export enum SleepState {
     Asleep,
 }
 
+export function sleepStateToEmoji(sleepState:SleepState) {
+    switch(sleepState) {
+        case SleepState.Awake:
+            return "👀";
+        case SleepState.Asleep: 
+            return "😴";
+        default:
+            throw new Error('Unknown SleepState: ' + sleepState);
+    }
+}
+
 export default class SleepEvent {
     state: SleepState;
     time: Date;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as sleepEventReducer from '../logic/sleepEventReducer';
+import * as sleepEvent from './../models/SleepEvent';
 
 const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> = ({sleepEventsState}) => {
   const options = {
@@ -18,8 +19,11 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
       <div>👀06:00</div>
       <div>{sleepEventsState.sleepEvents.length}</div>
       {
-        sleepEventsState.sleepEvents.map((value, index) => 
-          <div key={index}>{value.time.toLocaleTimeString("en-US", options)}</div>)
+        sleepEventsState.sleepEvents.map((value, index) => {
+          const symbol = sleepEvent.sleepStateToEmoji(value.state);
+          const time = value.time.toLocaleTimeString("en-US", options);
+          return <div key={index}>{symbol}{time}</div>
+        })
       }
     </div>
   );

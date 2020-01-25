@@ -19,7 +19,7 @@ export default function sleepEventReducer(state: SleepEventsStateType, action: S
     }
     case 'add-asleep': {
       let newSleepEvents = state.sleepEvents;
-      newSleepEvents.push(new SleepEvent(new Date(), SleepState.Awake));
+      newSleepEvents.push(new SleepEvent(new Date(), SleepState.Asleep));
       return { sleepEvents: newSleepEvents };
     }
     case 'add-awake-and-asleep': {
