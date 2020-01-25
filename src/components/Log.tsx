@@ -10,22 +10,42 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
     hour:  "2-digit",
     minute: "2-digit"
   };
+  
+  const items = [];
+  const eventsCount = sleepEventsState.sleepEvents.length;
+  for (let i = 0; i < eventsCount; i++) {
+    const event = sleepEventsState.sleepEvents[i];
+    const symbol = sleepEvent.sleepStateToEmoji(event.state);
+    const time = event.time.toLocaleTimeString("en-US", options);
+
+    if (event.state == sleepEvent.SleepState.Asleep) {
+      items.push(<div key={i}>{symbol}{time}</div>);
+    }
+    else {
+      if (i+1 < eventsCount) {
+        const nextEvent = sleepEventsState.sleepEvents[i+1];
+        let differenceInMinutes = Math.trunc((nextEvent.time.getTime()-event.time.getTime())/60000);
+        if (differenceInMinutes < 180) {
+          const nextSymbol = sleepEvent.sleepStateToEmoji(nextEvent.state);
+          const nextTime = nextEvent.time.toLocaleTimeString("en-US", options);
+          items.push(<div key={i}>{symbol}{time} {nextSymbol}{nextTime}</div>);
+          i++;
+        }
+        else {
+          items.push(<div className="separator" key={i}>{symbol}{time}</div>);
+        }
+      }
+      else {
+        items.push(<div key={i}>{symbol}{time}</div>);
+      }
+    }
+
+
+  }
+
   return (
     <div className="log">
-      <div>Saturday 12.12.2021</div>
-      <div>😴21:00</div>
-      <div>👀😴23:00</div>
-      <div>👀02:00 😴03:00</div>
-      <div>👀😴05:00</div>
-      <div>👀06:00</div>
-      <div>{sleepEventsState.sleepEvents.length}</div>
-      {
-        sleepEventsState.sleepEvents.map((value, index) => {
-          const symbol = sleepEvent.sleepStateToEmoji(value.state);
-          const time = value.time.toLocaleTimeString("en-US", options);
-          return <div key={index}>{symbol}{time}</div>
-        })
-      }
+      {items}
     </div>
   );
 };
