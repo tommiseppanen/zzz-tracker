@@ -19,24 +19,26 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
     const time = event.time.toLocaleTimeString("en-US", options);
 
     if (event.state == sleepEvent.SleepState.Asleep) {
-      items.push(<div key={i}>{symbol}{time}</div>);
+      items.push(<div className="log__entry" key={i}>{symbol}{time}</div>);
     }
     else {
       if (i+1 < eventsCount) {
         const nextEvent = sleepEventsState.sleepEvents[i+1];
-        let differenceInMinutes = Math.trunc((nextEvent.time.getTime()-event.time.getTime())/60000);
+        let timeDifference = nextEvent.time.getTime()-event.time.getTime();
+        let differenceInMinutes = Math.trunc(timeDifference/60000);
         if (differenceInMinutes < 180) {
           const nextSymbol = sleepEvent.sleepStateToEmoji(nextEvent.state);
           const nextTime = nextEvent.time.toLocaleTimeString("en-US", options);
-          items.push(<div key={i}>{symbol}{time} {nextSymbol}{nextTime}</div>);
+          const timeString = time === nextTime ? "" : `${time} `;
+          items.push(<div className="log__entry" key={i}>{symbol}{timeString}{nextSymbol}{nextTime}</div>);
           i++;
         }
         else {
-          items.push(<div className="separator" key={i}>{symbol}{time}</div>);
+          items.push(<div className="log__entry separator" key={i}>{symbol}{time}</div>);
         }
       }
       else {
-        items.push(<div key={i}>{symbol}{time}</div>);
+        items.push(<div className="log__entry" key={i}>{symbol}{time}</div>);
       }
     }
 
