@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as SleepEventReducer from '../logic/sleepEventReducer';
+import * as sleepEventReducer from '../logic/sleepEventReducer';
 
-const Log: React.FC<{sleepEventsState: SleepEventReducer.SleepEventsStateType}> = ({sleepEventsState}) => {
+const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> = ({sleepEventsState}) => {
   const options = {
     timeZone:"Europe/Helsinki",
     hour12 : false,

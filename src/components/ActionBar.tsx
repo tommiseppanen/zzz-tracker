@@ -1,9 +1,9 @@
 import * as React from 'react';
 import './ActionBar.css';
 import Emoji from './Emoji';
-import * as SleepEventReducer from '../logic/sleepEventReducer';
+import * as sleepEventReducer from '../logic/sleepEventReducer';
 
-const ActionBar: React.FC<{dispatch: React.Dispatch<SleepEventReducer.SleepActionType>}> = ({dispatch}) => {
+const ActionBar: React.FC<{dispatch: React.Dispatch<sleepEventReducer.SleepActionType>}> = ({dispatch}) => {
   return (
     <div className="action-bar">
       <div className="action-bar__button" onClick={() => dispatch({ type: 'add-asleep' })}>

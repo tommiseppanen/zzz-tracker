@@ -1,5 +1,4 @@
 import SleepEvent, { SleepState } from './../models/SleepEvent';
-import React from 'react';
 
 export type SleepEventsStateType = {
   sleepEvents: SleepEvent[];
@@ -9,7 +8,6 @@ export type SleepActionType = {
   type: 'init' | 'add-awake' | 'add-asleep' | 'add-awake-and-asleep'
 }
 
-//React.FC
 export default function sleepEventReducer(state: SleepEventsStateType, action: SleepActionType) : SleepEventsStateType {
   switch (action.type) {
     case 'init':
