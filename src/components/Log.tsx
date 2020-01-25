@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as sleepEventReducer from '../logic/sleepEventReducer';
 import * as sleepEvent from './../models/SleepEvent';
+import './Log.css';
 
 const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> = ({sleepEventsState}) => {
   const options = {
@@ -10,7 +11,7 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
     minute: "2-digit"
   };
   return (
-    <div className="Log">
+    <div className="log">
       <div>Saturday 12.12.2021</div>
       <div>😴21:00</div>
       <div>👀😴23:00</div>
