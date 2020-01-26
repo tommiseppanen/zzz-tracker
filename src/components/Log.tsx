@@ -1,53 +1,58 @@
 import * as React from 'react';
 import * as sleepEventReducer from '../logic/sleepEventReducer';
-import * as sleepEvent from './../models/SleepEvent';
+import SleepEvent, * as sleepEvent from './../models/SleepEvent';
 import './Log.css';
 
 const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> = ({sleepEventsState}) => {
-  const options = {
+  const dateFormatOptions = {
     timeZone:"Europe/Helsinki",
     hour12 : false,
     hour:  "2-digit",
     minute: "2-digit"
   };
-  
-  function formatLogEntry(key: number, symbol: string, time: string, modifier: string = ""): JSX.Element {    
-    const className = modifier.length > 0 ? `log__entry--${modifier}` : "log__entry";
-    return  <div className={className} key={key}>{time} {symbol}</div>;
+  const className = "log__entry";
+
+  function formatEvent(key: number, event: SleepEvent, modifier: string = ""): JSX.Element {    
+    const symbol = sleepEvent.sleepStateToEmoji(event.state);
+    const time = event.time.toLocaleTimeString("en-US", dateFormatOptions);
+    const cssClass = modifier.length > 0 ? `${className}--${modifier}` : className;
+    return  <div className={cssClass} key={key}>{time} {symbol}</div>;
+  }
+
+  function formatDualEvent(key: number, event: SleepEvent, nextEvent: SleepEvent,): JSX.Element {    
+    const symbol = sleepEvent.sleepStateToEmoji(event.state);
+    const time = event.time.toLocaleTimeString("en-US", dateFormatOptions);
+    const nextSymbol = sleepEvent.sleepStateToEmoji(nextEvent.state);
+    const nextTime = nextEvent.time.toLocaleTimeString("en-US", dateFormatOptions);
+    const nextTimeString = time === nextTime ? "" : ` ${nextTime}`;
+    return <div className={className} key={key}>{time} {symbol}{nextTimeString} {nextSymbol}</div>;
   }
 
   const items = [];
   const eventsCount = sleepEventsState.sleepEvents.length;
   for (let i = 0; i < eventsCount; i++) {
-    const event = sleepEventsState.sleepEvents[i];
-    const symbol = sleepEvent.sleepStateToEmoji(event.state);
-    const time = event.time.toLocaleTimeString("en-US", options);
+    const event = sleepEventsState.sleepEvents[i];   
 
     if (event.state == sleepEvent.SleepState.Asleep) {
-      items.push(formatLogEntry(i, symbol, time));
+      items.push(formatEvent(i, event));
     }
     else {
       if (i+1 < eventsCount) {
         const nextEvent = sleepEventsState.sleepEvents[i+1];
         let timeDifference = nextEvent.time.getTime()-event.time.getTime();
         let differenceInMinutes = Math.trunc(timeDifference/60000);
-        if (differenceInMinutes < 180) {
-          const nextSymbol = sleepEvent.sleepStateToEmoji(nextEvent.state);
-          const nextTime = nextEvent.time.toLocaleTimeString("en-US", options);
-          const nextTimeString = time === nextTime ? "" : ` ${nextTime}`;
-          items.push(<div className="log__entry" key={i}>{time} {symbol}{nextTimeString} {nextSymbol}</div>);
+        if (differenceInMinutes < 180) {         
+          items.push(formatDualEvent(i, event, nextEvent));
           i++;
         }
         else {
-          items.push(formatLogEntry(i, symbol, time, "separator"));
+          items.push(formatEvent(i, event, "separator"));
         }
       }
       else {
-        items.push(formatLogEntry(i, symbol, time));
+        items.push(formatEvent(i, event));
       }
     }
-
-
   }
 
   return (
