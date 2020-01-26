@@ -28,13 +28,13 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
     return <div className={className} key={key}>{time} {symbol}{nextTimeString} {nextSymbol}</div>;
   }
 
-  const items = [];
+  const logEntries = [];
   const eventsCount = sleepEventsState.sleepEvents.length;
   for (let i = 0; i < eventsCount; i++) {
     const event = sleepEventsState.sleepEvents[i];   
 
     if (event.state == sleepEvent.SleepState.Asleep) {
-      items.push(formatEvent(i, event));
+      logEntries.push(formatEvent(i, event));
     }
     else {
       if (i+1 < eventsCount) {
@@ -42,22 +42,22 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
         let timeDifference = nextEvent.time.getTime()-event.time.getTime();
         let differenceInMinutes = Math.trunc(timeDifference/60000);
         if (differenceInMinutes < 180) {         
-          items.push(formatDualEvent(i, event, nextEvent));
+          logEntries.push(formatDualEvent(i, event, nextEvent));
           i++;
         }
         else {
-          items.push(formatEvent(i, event, "separator"));
+          logEntries.push(formatEvent(i, event, "separator"));
         }
       }
       else {
-        items.push(formatEvent(i, event));
+        logEntries.push(formatEvent(i, event));
       }
     }
   }
 
   return (
     <div className="log">
-      {items}
+      {logEntries}
     </div>
   );
 };
