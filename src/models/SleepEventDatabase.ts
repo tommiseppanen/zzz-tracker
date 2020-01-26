@@ -14,6 +14,6 @@ export default class SleepEventDatabase extends Dexie {
 
 interface IStoredSleepEvent {
     id?: number,
-    state: string;
+    state: number;
     time: Date;
 }

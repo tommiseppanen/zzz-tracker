@@ -6,7 +6,6 @@ import * as sleepEventReducer from '../logic/sleepEventReducer';
 const ActionBar: React.FC<{dispatch: React.Dispatch<sleepEventReducer.SleepActionType>}> = ({dispatch}) => {
   const addAsleep = () => {
     dispatch({ type: 'add-asleep' });
-    console.log("test");
   };
   const addAwakeAndAsleep = () => {
     dispatch({ type: 'add-awake-and-asleep' });

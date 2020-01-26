@@ -2,14 +2,20 @@ import React from 'react';
 import './App.css';
 import ActionBar from './components/ActionBar';
 import Log from './components/Log';
-import sleepEventReducer from './logic/sleepEventReducer';
+import sleepEventReducer, * as sleepEvent from './logic/sleepEventReducer';
 import SleepEventDatabase from './models/SleepEventDatabase';
 
 const App: React.FC = () => {
-  React.useEffect(() => {
+  function loadSleepEvents(): sleepEvent.SleepEventsStateType {
     const db = new SleepEventDatabase();
-  });
-  const [sleepEvents, dispatchSleepEvents] = React.useReducer(sleepEventReducer, { sleepEvents: [] });
+    db.sleepEvents.toArray().then(events => {
+      console.log(events);
+      return { sleepEvents: events };
+    });
+    return { sleepEvents: [] };
+  }
+  const [sleepEvents, dispatchSleepEvents] = React.useReducer(sleepEventReducer, { sleepEvents: [] }, loadSleepEvents);
+
   return (
     <div className="app">
       <Log sleepEventsState={sleepEvents}/>
