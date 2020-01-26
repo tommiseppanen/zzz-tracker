@@ -11,6 +11,11 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
     minute: "2-digit"
   };
   
+  function formatLogEntry(key: number, symbol: string, time: string, modifier: string = ""): JSX.Element {    
+    const className = modifier.length > 0 ? `log__entry--${modifier}` : "log__entry";
+    return  <div className={className} key={key}>{time} {symbol}</div>;
+  }
+
   const items = [];
   const eventsCount = sleepEventsState.sleepEvents.length;
   for (let i = 0; i < eventsCount; i++) {
@@ -19,7 +24,7 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
     const time = event.time.toLocaleTimeString("en-US", options);
 
     if (event.state == sleepEvent.SleepState.Asleep) {
-      items.push(<div className="log__entry" key={i}>{symbol}{time}</div>);
+      items.push(formatLogEntry(i, symbol, time));
     }
     else {
       if (i+1 < eventsCount) {
@@ -29,16 +34,16 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
         if (differenceInMinutes < 180) {
           const nextSymbol = sleepEvent.sleepStateToEmoji(nextEvent.state);
           const nextTime = nextEvent.time.toLocaleTimeString("en-US", options);
-          const timeString = time === nextTime ? "" : `${time} `;
-          items.push(<div className="log__entry" key={i}>{symbol}{timeString}{nextSymbol}{nextTime}</div>);
+          const nextTimeString = time === nextTime ? "" : ` ${nextTime}`;
+          items.push(<div className="log__entry" key={i}>{time} {symbol}{nextTimeString} {nextSymbol}</div>);
           i++;
         }
         else {
-          items.push(<div className="log__entry--separator" key={i}>{symbol}{time}</div>);
+          items.push(formatLogEntry(i, symbol, time, "separator"));
         }
       }
       else {
-        items.push(<div className="log__entry" key={i}>{symbol}{time}</div>);
+        items.push(formatLogEntry(i, symbol, time));
       }
     }
 
