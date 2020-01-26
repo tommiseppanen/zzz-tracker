@@ -6,15 +6,16 @@ import sleepEventReducer, * as sleepEvent from './logic/sleepEventReducer';
 import SleepEventDatabase from './models/SleepEventDatabase';
 
 const App: React.FC = () => {
-  function loadSleepEvents(): sleepEvent.SleepEventsStateType {
+  const [sleepEvents, dispatchSleepEvents] = React.useReducer(sleepEventReducer, { sleepEvents: [] });
+
+  React.useEffect(() => {
     const db = new SleepEventDatabase();
     db.sleepEvents.toArray().then(events => {
       console.log(events);
-      return { sleepEvents: events };
+      dispatchSleepEvents({ type: 'init', payload: events });
     });
-    return { sleepEvents: [] };
-  }
-  const [sleepEvents, dispatchSleepEvents] = React.useReducer(sleepEventReducer, { sleepEvents: [] }, loadSleepEvents);
+    //db.sleepEvents.put({state: 1, time: new Date()});
+  });
 
   return (
     <div className="app">
