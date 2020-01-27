@@ -15,7 +15,7 @@ const App: React.FC = () => {
       dispatchSleepEvents({ type: 'init', payload: events });
     });
     //db.sleepEvents.put({state: 1, time: new Date()});
-  });
+  }, []);
 
   return (
     <div className="app">
