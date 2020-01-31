@@ -17,3 +17,5 @@ interface IStoredSleepEvent {
     state: number;
     time: Date;
 }
+
+export const db = new SleepEventDatabase();
