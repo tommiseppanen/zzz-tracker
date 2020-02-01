@@ -1,4 +1,4 @@
-import SleepEvent, { SleepState } from './../models/SleepEvent';
+import SleepEvent from './../models/SleepEvent';
 
 export type SleepEventsStateType = {
   sleepEvents: SleepEvent[]

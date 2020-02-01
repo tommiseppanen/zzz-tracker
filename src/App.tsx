@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import ActionBar from './components/ActionBar';
 import Log from './components/Log';
-import sleepEventReducer, * as sleepEvent from './logic/sleepEventReducer';
+import sleepEventReducer from './logic/sleepEventReducer';
 import  * as actions from './logic/actions';
 import SleepEventDatabase from './models/SleepEventDatabase';
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './ActionBar.css';
 import Emoji from './Emoji';
-import * as sleepEventReducer from '../logic/sleepEventReducer';
 
 const ActionBar: React.FC<{addAwake: () => void, addAsleep: () => void, 
   addAwakeAndAsleep: () => void}> = ({addAwake, addAsleep, addAwakeAndAsleep}) => {
