@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "zzz-tracker",
+  "name": "zzz-tracker - a simple sleep log",
   "icons": [
     {
       "src": "favicon.ico",
