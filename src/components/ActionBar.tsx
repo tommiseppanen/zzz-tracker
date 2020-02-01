@@ -3,16 +3,8 @@ import './ActionBar.css';
 import Emoji from './Emoji';
 import * as sleepEventReducer from '../logic/sleepEventReducer';
 
-const ActionBar: React.FC<{dispatch: React.Dispatch<sleepEventReducer.SleepActionType>}> = ({dispatch}) => {
-  const addAsleep = () => {
-    dispatch({ type: 'add-asleep' });
-  };
-  const addAwakeAndAsleep = () => {
-    dispatch({ type: 'add-awake-and-asleep' });
-  };
-  const addAwake = () => {
-    dispatch({ type: 'add-awake' });
-  };
+const ActionBar: React.FC<{addAwake: () => void, addAsleep: () => void, 
+  addAwakeAndAsleep: () => void}> = ({addAwake, addAsleep, addAwakeAndAsleep}) => {
   return (
     <div className="action-bar">
       <div className="action-bar__button" onClick={addAsleep}>

@@ -3,6 +3,7 @@ import './App.css';
 import ActionBar from './components/ActionBar';
 import Log from './components/Log';
 import sleepEventReducer, * as sleepEvent from './logic/sleepEventReducer';
+import  * as actions from './logic/actions';
 import SleepEventDatabase from './models/SleepEventDatabase';
 
 const App: React.FC = () => {
@@ -14,13 +15,14 @@ const App: React.FC = () => {
       console.log(events);
       dispatchSleepEvents({ type: 'init', payload: events });
     });
-    //db.sleepEvents.put({state: 1, time: new Date()});
   }, []);
 
   return (
     <div className="app">
       <Log sleepEventsState={sleepEvents}/>
-      <ActionBar dispatch={dispatchSleepEvents}/>
+      <ActionBar addAwake={actions.addAwake(dispatchSleepEvents)} 
+        addAwakeAndAsleep={actions.addAwakeAndAsleep(dispatchSleepEvents)} 
+        addAsleep={actions.addAsleep(dispatchSleepEvents)}/>
     </div>
   );
 }

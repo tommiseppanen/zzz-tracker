@@ -33,7 +33,7 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
   for (let i = 0; i < eventsCount; i++) {
     const event = sleepEventsState.sleepEvents[i];   
 
-    if (event.state == sleepEvent.SleepState.Asleep) {
+    if (event.state === sleepEvent.SleepState.Asleep) {
       logEntries.push(formatEvent(i, event));
     }
     else {
