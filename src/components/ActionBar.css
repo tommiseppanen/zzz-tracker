@@ -12,4 +12,5 @@
 .action-bar__button {
   font-size: 8vh;
   margin: 0 1vh;
+  padding-top: 0.3vh;
 }
