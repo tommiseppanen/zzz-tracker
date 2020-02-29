@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "75dec27be4837eda5f41a0f891412fc3",
+    "revision": "58bd5f0e8ea617279b35cad2eaa235ee",
     "url": "/zzz-tracker/index.html"
   },
   {
-    "revision": "5396ef6445af4235ab11",
-    "url": "/zzz-tracker/static/css/main.5dca117c.chunk.css"
+    "revision": "c6711b6ec2a661f273bf",
+    "url": "/zzz-tracker/static/css/main.139e634a.chunk.css"
   },
   {
     "revision": "37e8a232b1fe22423e4d",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/zzz-tracker/static/js/2.9010beab.chunk.js.LICENSE"
   },
   {
-    "revision": "5396ef6445af4235ab11",
-    "url": "/zzz-tracker/static/js/main.2bbf293b.chunk.js"
+    "revision": "c6711b6ec2a661f273bf",
+    "url": "/zzz-tracker/static/js/main.7c6669e5.chunk.js"
   },
   {
     "revision": "15a581672504644e897d",
