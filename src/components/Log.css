@@ -1,5 +1,5 @@
 .log {
-  margin-bottom: 10vh;
+  margin-bottom: max(13vh, 60px);
 }
 
 .log__entry--separator {
