@@ -37,7 +37,7 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
 
     //Group events
     if (event.state === sleepEvent.SleepState.Asleep) {
-      logEntries.push(formatEvent(i, event, "separator"));
+      logEntries.unshift(formatEvent(i, event, "separator"));
     }
     else {
       if (i+1 < eventsCount) {
@@ -45,16 +45,12 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
         let timeDifference = nextEvent.time.getTime()-event.time.getTime();
         let differenceInMinutes = Math.trunc(timeDifference/60000);
         if (differenceInMinutes < dualEventLimitMinutes) {         
-          logEntries.push(formatDualEvent(i, event, nextEvent));
+          logEntries.unshift(formatDualEvent(i, event, nextEvent));
           i++;
-        }
-        else {
-          logEntries.push(formatEvent(i, event));
+          continue;
         }
       }
-      else {
-        logEntries.push(formatEvent(i, event));
-      }
+      logEntries.unshift(formatEvent(i, event));
     }
   }
 
