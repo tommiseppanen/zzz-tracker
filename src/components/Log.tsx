@@ -11,19 +11,20 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
     minute: "2-digit"
   };
   const className = "log__entry";
+  const locale = "en-GB";
 
   function formatEvent(key: number, event: SleepEvent, modifier: string = ""): JSX.Element {    
     const symbol = sleepEvent.sleepStateToEmoji(event.state);
-    const time = event.time.toLocaleTimeString("en-US", dateFormatOptions);
+    const time = event.time.toLocaleTimeString(locale, dateFormatOptions);
     const cssClass = modifier.length > 0 ? `${className}--${modifier}` : className;
     return  <div className={cssClass} key={key}>{time} {symbol}</div>;
   }
 
   function formatDualEvent(key: number, event: SleepEvent, nextEvent: SleepEvent,): JSX.Element {    
     const symbol = sleepEvent.sleepStateToEmoji(event.state);
-    const time = event.time.toLocaleTimeString("en-US", dateFormatOptions);
+    const time = event.time.toLocaleTimeString(locale, dateFormatOptions);
     const nextSymbol = sleepEvent.sleepStateToEmoji(nextEvent.state);
-    const nextTime = nextEvent.time.toLocaleTimeString("en-US", dateFormatOptions);
+    const nextTime = nextEvent.time.toLocaleTimeString(locale, dateFormatOptions);
     const nextTimeString = time === nextTime ? "" : ` ${nextTime}`;
     return <div className={className} key={key}>{time} {symbol}{nextTimeString} {nextSymbol}</div>;
   }
