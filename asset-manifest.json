@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/zzz-tracker/static/css/main.139e634a.chunk.css",
-    "main.js": "/zzz-tracker/static/js/main.7c6669e5.chunk.js",
-    "main.js.map": "/zzz-tracker/static/js/main.7c6669e5.chunk.js.map",
+    "main.css": "/zzz-tracker/static/css/main.7fdfa2dd.chunk.css",
+    "main.js": "/zzz-tracker/static/js/main.63c0ab2d.chunk.js",
+    "main.js.map": "/zzz-tracker/static/js/main.63c0ab2d.chunk.js.map",
     "runtime-main.js": "/zzz-tracker/static/js/runtime-main.4c80b805.js",
     "runtime-main.js.map": "/zzz-tracker/static/js/runtime-main.4c80b805.js.map",
     "static/js/2.9010beab.chunk.js": "/zzz-tracker/static/js/2.9010beab.chunk.js",
     "static/js/2.9010beab.chunk.js.map": "/zzz-tracker/static/js/2.9010beab.chunk.js.map",
     "index.html": "/zzz-tracker/index.html",
-    "precache-manifest.d10129a17684e34e2961ffc9f8afa6a8.js": "/zzz-tracker/precache-manifest.d10129a17684e34e2961ffc9f8afa6a8.js",
+    "precache-manifest.29057a949753a172aa02f29a0c399882.js": "/zzz-tracker/precache-manifest.29057a949753a172aa02f29a0c399882.js",
     "service-worker.js": "/zzz-tracker/service-worker.js",
-    "static/css/main.139e634a.chunk.css.map": "/zzz-tracker/static/css/main.139e634a.chunk.css.map",
+    "static/css/main.7fdfa2dd.chunk.css.map": "/zzz-tracker/static/css/main.7fdfa2dd.chunk.css.map",
     "static/js/2.9010beab.chunk.js.LICENSE": "/zzz-tracker/static/js/2.9010beab.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.4c80b805.js",
     "static/js/2.9010beab.chunk.js",
-    "static/css/main.139e634a.chunk.css",
-    "static/js/main.7c6669e5.chunk.js"
+    "static/css/main.7fdfa2dd.chunk.css",
+    "static/js/main.63c0ab2d.chunk.js"
   ]
 }
