@@ -12,6 +12,7 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
   };
   const className = "log__entry";
   const locale = "en-GB";
+  const dualEventLimitMinutes = 180;
 
   function formatEvent(key: number, event: SleepEvent, modifier: string = ""): JSX.Element {    
     const symbol = sleepEvent.sleepStateToEmoji(event.state);
@@ -34,20 +35,21 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
   for (let i = 0; i < eventsCount; i++) {
     const event = sleepEventsState.sleepEvents[i];   
 
+    //Group events
     if (event.state === sleepEvent.SleepState.Asleep) {
-      logEntries.push(formatEvent(i, event));
+      logEntries.push(formatEvent(i, event, "separator"));
     }
     else {
       if (i+1 < eventsCount) {
         const nextEvent = sleepEventsState.sleepEvents[i+1];
         let timeDifference = nextEvent.time.getTime()-event.time.getTime();
         let differenceInMinutes = Math.trunc(timeDifference/60000);
-        if (differenceInMinutes < 180) {         
+        if (differenceInMinutes < dualEventLimitMinutes) {         
           logEntries.push(formatDualEvent(i, event, nextEvent));
           i++;
         }
         else {
-          logEntries.push(formatEvent(i, event, "separator"));
+          logEntries.push(formatEvent(i, event));
         }
       }
       else {
