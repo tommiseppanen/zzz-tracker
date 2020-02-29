@@ -1,16 +1,15 @@
 .action-bar {
-  height: max(10vh, 50px);
   width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   position: fixed;
   bottom: 0;
-  background-color: #35363A;
 }
 
 .action-bar__button {
   font-size: max(8vh, 40px);
-  margin: 0 1vh;
-  padding-top: max(0.3vh, 2px);
+  padding: 1vh;
+  background-color: #35363A;
+  border-radius: 1vh;
 }
