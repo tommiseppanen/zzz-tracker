@@ -54,6 +54,10 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
     }
   }
 
+  React.useEffect(() => {
+    window.scrollTo(0,document.body.scrollHeight);
+  });
+
   return (
     <div className="log">
       {logEntries}
