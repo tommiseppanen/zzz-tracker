@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/zzz-tracker/precache-manifest.29057a949753a172aa02f29a0c399882.js"
+  "/zzz-tracker/precache-manifest.d9f7647c168c6524ca7ec110ae957d0f.js"
 );
 
 self.addEventListener('message', (event) => {
