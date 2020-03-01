@@ -35,22 +35,22 @@ const Log: React.FC<{sleepEventsState: sleepEventReducer.SleepEventsStateType}> 
   for (let i = 0; i < eventsCount; i++) {
     const event = sleepEventsState.sleepEvents[i];   
 
-    //Group events
+    //Group events, asleep starts a new group
     if (event.state === sleepEvent.SleepState.Asleep) {
-      logEntries.unshift(formatEvent(i, event, "separator"));
+      logEntries.push(formatEvent(i, event, "separator"));
     }
     else {
       if (i+1 < eventsCount) {
         const nextEvent = sleepEventsState.sleepEvents[i+1];
         let timeDifference = nextEvent.time.getTime()-event.time.getTime();
         let differenceInMinutes = Math.trunc(timeDifference/60000);
-        if (differenceInMinutes < dualEventLimitMinutes) {         
-          logEntries.unshift(formatDualEvent(i, event, nextEvent));
+        if (differenceInMinutes < dualEventLimitMinutes && nextEvent.state === sleepEvent.SleepState.Asleep) {         
+          logEntries.push(formatDualEvent(i, event, nextEvent));
           i++;
           continue;
         }
       }
-      logEntries.unshift(formatEvent(i, event));
+      logEntries.push(formatEvent(i, event));
     }
   }
 
